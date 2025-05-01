@@ -29,7 +29,7 @@ uploaded_file = st.file_uploader("Unggah Gambar", type=["jpg", "png", "jpeg"])
 
 if uploaded_file:
     image = Image.open(uploaded_file)
-    st.image(image, caption="Gambar yang diunggah", use_column_width=True)
+    st.image(image, caption="Gambar yang diunggah", use_container_width=True)
 
     processed_image = preprocess_image(image)
     prediction = model.predict(processed_image)
