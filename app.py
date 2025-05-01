@@ -27,13 +27,21 @@ st.write("Unggah gambar kucing untuk mendapatkan prediksi breed-nya.")
 
 uploaded_file = st.file_uploader("Unggah Gambar", type=["jpg", "png", "jpeg"])
 
-if uploaded_file:
-    image = Image.open(uploaded_file)
-    st.image(image, caption="Gambar yang diunggah", use_container_width=True)
+if uploaded_file is not None:
+    # Cek format file berdasarkan ekstensi
+    file_extension = uploaded_file.name.split(".")[-1].lower()
+    allowed_extensions = ["jpg", "png", "jpeg"]
 
-    processed_image = preprocess_image(image)
-    prediction = model.predict(processed_image)
-    predicted_label = np.argmax(prediction)
-    predicted_breed = cat_breed_names[predicted_label]
+    if file_extension not in allowed_extensions:
+        st.error("❌ Format file tidak didukung! Harap unggah file dengan format JPG, PNG, atau JPEG.")
+    else:
+        # Jika format benar, lanjutkan ke proses prediksi
+        image = Image.open(uploaded_file).convert("RGB")
+        st.image(image, caption="Gambar yang diunggah", use_container_width=True)
+        
+        processed_image = preprocess_image(image)
+        prediction = model.predict(processed_image)
+        predicted_label = np.argmax(prediction)
+        predicted_breed = cat_breed_names[predicted_label]
 
-    st.write(f"Prediksi: **{predicted_breed}**")
+        st.write(f"Prediksi: **{predicted_breed}**")
