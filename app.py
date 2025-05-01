@@ -41,7 +41,12 @@ if uploaded_file is not None:
         
         processed_image = preprocess_image(image)
         prediction = model.predict(processed_image)
-        predicted_label = np.argmax(prediction)
-        predicted_breed = cat_breed_names[predicted_label]
+        max_prob = np.max(prediction)  # Probabilitas tertinggi dari prediksi
 
-        st.write(f"Prediksi: **{predicted_breed}**")
+        if max_prob < 0.7:  # Threshold 70% untuk validasi
+            st.warning("❌ Model tidak yakin ini adalah kucing! Coba unggah gambar lain.")
+        else:
+            predicted_label = np.argmax(prediction)
+            predicted_breed = cat_breed_names[predicted_label]
+
+            st.write(f"Prediksi: **{predicted_breed}**")
