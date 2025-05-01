@@ -9,8 +9,8 @@ model = tf.keras.models.load_model("model.h5")
 # Daftar Nama Breed Kucing
 cat_breed_names = [
     "Abyssinian", "Bengal", "Birman", "Bombay",
-    "British Shorthair", "Egyptian Mau", "Maine Coon",
-    "Persian", "Ragdoll", "Russian Blue", "Siamese", "Sphynx"
+    "British_Shorthair", "Egyptian_Mau", "Maine_Coon",
+    "Persian", "Ragdoll", "Russian_Blue", "Siamese", "Sphynx"
 ]
 
 IMG_SIZE = 160
