@@ -15,7 +15,8 @@ st.set_page_config(
 
 st.markdown(
     """<style>
-            .stMarkdown h3,h4{text-align: center;}
+            .stMarkdown h3,h4{text-align: center;},
+            [data-testid="stFullScreenFrame"]{padding:0rem; margin:0rem;}
             </style>""",
     unsafe_allow_html=True,
 )
@@ -55,15 +56,15 @@ col1, col2 = st.columns([1, 3])
 with col1:
     st.image(
         "./assets/images.png",
-        width=100,
+        use_container_width=True,
     )
 with col2:
     st.title("Klasifikasi Breed Kucing")
 
+    st.markdown(
+        "> Aplikasi ini menggunakan model **CNN** untuk mengklasifikasikan **breed kucing** berdasarkan gambar kucing yang diunggah."
+    )
 
-st.markdown(
-    "> Aplikasi ini menggunakan model **CNN** untuk mengklasifikasikan **breed kucing** berdasarkan gambar kucing yang diunggah."
-)
 
 uploaded_file = st.file_uploader("Unggah Gambar", type=["jpg", "png", "jpeg"])
 st.markdown(
