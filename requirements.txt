@@ -1,1 +1,4 @@
-tensorflow==2.18.0
+tensorflow
+streamlit
+python-dotenv
+streamlit-lottie
